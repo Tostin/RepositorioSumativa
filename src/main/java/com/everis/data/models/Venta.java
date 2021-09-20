@@ -11,6 +11,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -21,36 +23,31 @@ public class Venta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String codigo;
-	private String valor;
-	private Integer cantidadProductos;
-	private String nombrePersonaCargo; //nombre de la persona a cargo de realizar la venta
+	private String valorTotal;
+ //nombre de la persona a cargo de realizar la venta
 	
 	@Column(updatable=false)
+	@CreationTimestamp
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt; 
+	
+	@UpdateTimestamp
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date updatedAt;
 	
+	
 //contructores
 
+	
 
 	public Venta() {
 		super();
 	}
-	
-	
-	
-	
 
-	public Venta(String codigo, String valor, Integer cantidadProductos, String nombrePersonaCargo) {
+	public Venta(String valorTotal) {
 		super();
-		this.codigo = codigo;
-		this.valor = valor;
-		this.cantidadProductos = cantidadProductos;
-		this.nombrePersonaCargo = nombrePersonaCargo;
+		this.valorTotal = valorTotal;
 	}
-
 
 
 
@@ -60,87 +57,45 @@ public class Venta {
 	}
 
 
-
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 
+	public String getValorTotal() {
+		return valorTotal;
+	}
 
 
-
-	public String getCodigo() {
-		return codigo;
+	public void setValorTotal(String valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
 
 
 
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
 
-
-
-
-	public String getValor() {
-		return valor;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 
-
-
-
-	public void setValor(String valor) {
-		this.valor = valor;
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
 
 
-
-
-
-	public Integer getCantidadProductos() {
-		return cantidadProductos;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
-
-
-
-
-
-	public void setCantidadProductos(Integer cantidadProductos) {
-		this.cantidadProductos = cantidadProductos;
-	}
-
-
-
-
-
-	public String getNombrePersonaCargo() {
-		return nombrePersonaCargo;
-	}
-
-
-
-
-
-	public void setNombrePersonaCargo(String nombrePersonaCargo) {
-		this.nombrePersonaCargo = nombrePersonaCargo;
-	}
-
+		
 	
-	@PrePersist 
-	protected void onCreate(){
-	this.createdAt = new Date();
-	}
-	@PreUpdate
-	protected void onUpdate(){
-	this.updatedAt = new Date();
-	}
-	
+
+
 	
 
 }

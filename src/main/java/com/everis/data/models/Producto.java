@@ -23,7 +23,7 @@ public class Producto {
 	private String nombre;
 	private String codigo;
 	private Integer valorBase;
-	private String categoria;
+	
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -42,12 +42,11 @@ public class Producto {
 
 
 
-	public Producto(String nombre, String codigo, Integer valorBase, String categoria) {
+	public Producto(String nombre, String codigo, Integer valorBase) {
 		super();
 		this.nombre = nombre;
 		this.codigo = codigo;
 		this.valorBase = valorBase;
-		this.categoria = categoria;
 	}
 
 
@@ -105,19 +104,6 @@ public class Producto {
 		this.valorBase = valorBase;
 	}
 
-
-
-
-	public String getCategoria() {
-		return categoria;
-	}
-
-
-
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
 	
 	@PrePersist 
 	protected void onCreate(){
